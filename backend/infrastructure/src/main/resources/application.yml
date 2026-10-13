@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: auction-house
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auctions
+    username: auctions
+    password: auctions
+  jpa:
+    open-in-view: false        # don't let lazy loading leak into the web layer
+    hibernate:
+      ddl-auto: validate       # schema is owned by Flyway, Hibernate only checks it
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
